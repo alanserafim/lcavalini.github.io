@@ -7,29 +7,24 @@ function numberToReal(numero) {
 function calcSallary() {
 	
 	// valores atualizados até 07/2025.
+	// 2618,00 * 1.0425 = 2730,99
 	const base = [
 		{ cargo: "", valor: 2618.80 },
 		// { cargo: "csj", valor: 2687.15 },
 		// { cargo: "csjGab", valor: 2687.15 }
 	];
 	const baseGratificacao = 972.37;
+	// 6.108,42 * 0.425 = 6.368,02
+	// 1.388,55 * 0.425 = 1.447,56
 	// Resolução nº 959/2025. 
 	const multiplicadoresGaj = [
 		{ cargo: "", valor:  6.282 },
-		{ cargo: "asjGab", valor: 7.710 },
-		// { cargo: "estenotipista", valor: 4.66516 },
-		// { cargo: "etjGabUpj", valor: 4.66516 },
-		// { cargo: "etjGab", valor: 5.954 },
-		// { cargo: "esadm", valor: 5.954 },
-		// { cargo: "ajc", valor: 8.065 },
-		// { cargo: "csj", valor: 6.61 },
-		// { cargo: "csjGab", valor: 9.14637 }, // Não tenho a informação exata de quanto é GAJ e quanto é Representação.
-		// { cargo: "ajur", valor: 11.105 },
-		// { cargo: "coord", valor: 11.661 },
-		// { cargo: "eqgab", valor: 4.66516 } // Comunicado SGP nº 58/2025.
+		{ cargo: "asjGab", valor: 7.710 }
 	];
+	// 462,84 * 1,0425 = 482,51
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
+		{ cargo: "asjGab", valor: 0.4760 }, // analista
 		{ cargo: "etjGabUpj", valor: 0.6999 },  // COMUNICADO Nº 94/2024 SGP.
 		{ cargo: "etjGab", valor: 0.434 },
 		{ cargo: "esadm", valor: 0.434 },
@@ -64,11 +59,12 @@ function calcSallary() {
 	const auxilioCreche = 805; // COMUNICADO Nº 35/2025 SGP.
 	const auxilioFillhoDeficiencia = 1207.5; // COMUNICADO Nº 35/2025 SGP.
 	const auxilioAlimentacao = 80; // COMUNICADO Nº 35/2025 SGP.
-	const auxilioTransporte = 14; // PORTARIA Nº 10.536/2025.
+	const auxilioTransporte = 18.80;
 	const auxilioSaude = 718; // COMUNICADO Nº 94/2024 SGP.
 	const percentuaisAuxilioSaude = [ 
 		1,  1.04, 1.06, 1.1, 1.67, 1.71
 	]; // COMUNICADO Nº 94/2024 SGP.
+	const dissidio = 0.425;
 
 	const deducaoDependenteIRPF = 189.59;
 	
@@ -116,7 +112,7 @@ function calcSallary() {
 	let valorBase = base.filter(b => b.cargo == cargo).length == 1
 		? base.filter(b => b.cargo == cargo)[0].valor
 		: base.filter(b => b.cargo == "")[0].valor;
-	let vencimentos = valorBase + gaj + repr + adicionalProgressao;
+	let vencimentos = (valorBase + gaj + repr + adicionalProgressao) * 1.0425;
 	// Assistente Judiciário não recebe adicional de nível superior.
 	let adicionalQualificacao = cargo == "ajc" && formacaoAcademica == 0.05
 		? 0.0
