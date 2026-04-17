@@ -136,6 +136,28 @@
 					<label>Agregados do IAMSPE com 59 anos ou mais: </label>
 					<input type = "number" id="agregadosIamspeIdadeSuperior" class="form-control"  min = "0" max = "20" value = "0">
 				</div>
+				<div class="form-group">
+					<label>Opção pela base do cálculo da Contribuição Previdênciária: </label>
+				
+					<div class="form-check">
+						<input class="form-check-input" type="radio" id="verbasDoCargo" name="baseCalculo" value="1" checked>
+						<label class="form-check-label" for="verbasDoCargo">
+							Verbas próprias do cargo (sem considerar verbas não incorporáveis)
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" id="verbasTotaisLimitadoAoTeto" name="baseCalculo"value="2">
+						<label class="form-check-label" for="verbasTotaisLimitadoAoTeto">
+							Totalidade dos vencimentos (limitado ao teto do INSS)
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" id="verbasTotaisNaoLimitadoAoTeto" name="baseCalculo"value="3">
+						<label class="form-check-label" for="verbasTotaisNaoLimitadoAoTeto">
+							Totalidade dos vencimentos (não limitado ao teto do INSS)
+						</label>
+					</div>
+				</div>
                 <div class="d-grid gap-2 py-2">
 					<input type = "button" class="btn btn-success btn-block" value = "Calcular" onclick = "calcSallary()">
 				</div>	
@@ -174,7 +196,7 @@
 			<div class="item-resultado">(+) Imposto de Renda: <span id="totalIRPF"></span></div>
 			<div class="item-resultado">(=) Total de descontos: <span class="totalDescontos"></span></div>
 
-			<div class="alert alert-info mt-3"><strong>Última atualização:</strong> 16/04/2026: aumento do adicional de qualificação e reajuste de 0,0425% .</div>
+			<div class="alert alert-info mt-3"><strong>Última atualização:</strong> 16/04/2026: + adicional de qualificação + 0,425% .</div>
 		</section>
 	</main>
 	<footer id="contato" class="titulo col-lg-12 bg-primary">
@@ -187,7 +209,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="shared/js/calculo.js"></script>
-    <script src="js/calculo.js"></script>
+    <script src="../shared/js/calculo.js"></script>
+    <script src="./js/calculo.js"></script>
 </body>
 </html>

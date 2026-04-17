@@ -97,6 +97,7 @@ function calcSallary() {
 	let acrescimoAuxilioSaude = Number(document.getElementById("acrescimoAuxilioSaude").value);
 	let faixaEtariaAuxilioSaude = Number(document.getElementById("faixaEtariaAuxilioSaude").value);
 	let padraoVecimento = document.getElementById("padraoVencimento").value;
+	let opcaoCalculoPrevidenciario = Number(document.querySelector('input[name="baseCalculo"]:checked').value);
 
 	let multiplicadorGaj = multiplicadoresGaj.filter(m => m.cargo == cargo).length == 1
 		? multiplicadoresGaj.filter(m => m.cargo == cargo)[0]
@@ -146,7 +147,27 @@ function calcSallary() {
 	let totalDeducaoDependenteIRPF = dependentes * deducaoDependenteIRPF;
 
 	// a contribuição previdenciária SPPREV é limitada ao teto do INSS
-	let baseCalculoPrevidencia = baseCalculoDeducoes > tetoInss ? tetoInss : baseCalculoDeducoes;
+
+	// base calculo < teto
+	let baseCalculoPrevidencia = baseCalculoDeducoes  
+	
+	if (baseCalculoDeducoes > tetoInss) {
+		// base calculo > teto & opção 1 (sem cargo comissionado e verba de gabinete)
+		if (opcaoCalculoPrevidenciario == 1) {
+			baseCalculoPrevidencia = tetoInss; 
+		}
+		// base calculo > teto & opção 2 (com cargo comissionado e verba de gabinete mas limitado ao teto do INSS)
+		if (opcaoCalculoPrevidenciario == 2) {
+			baseCalculoPrevidencia = tetoInss;
+		}
+		// base calculo > teto & opção 3 (com cargo comissionado e verba de gabinete e sem limitação ao teto do INSS)
+		if (opcaoCalculoPrevidenciario == 3) {
+			baseCalculoPrevidencia = baseCalculoDeducoes;
+		}
+	}
+	
+
+	//let baseCalculoPrevidencia = baseCalculoDeducoes > tetoInss ? tetoInss : baseCalculoDeducoes;
 	if (baseCalculoPrevidencia <= faixasContribuicaoPrevidenciaria[0].limite) {
 		totalContribuicaoPrevidenciaria = baseCalculoPrevidencia * faixasContribuicaoPrevidenciaria[0].aliquota - faixasContribuicaoPrevidenciaria[0].deducao;
 	} else if (baseCalculoPrevidencia <= faixasContribuicaoPrevidenciaria[1].limite) {

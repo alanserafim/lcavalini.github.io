@@ -136,6 +136,28 @@
 					<label>Agregados do IAMSPE com 59 anos ou mais: </label>
 					<input type = "number" id="agregadosIamspeIdadeSuperior" class="form-control"  min = "0" max = "20" value = "0">
 				</div>
+				<div class="form-group">
+					<label>Opção pela base do cálculo da Contribuição Previdênciária: </label>
+				
+					<div class="form-check">
+						<input class="form-check-input" type="radio" id="verbasDoCargo" name="baseCalculo" value="1" checked>
+						<label class="form-check-label" for="verbasDoCargo">
+							Verbas próprias do cargo (sem considerar verbas não incorporáveis)
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" id="verbasTotaisLimitadoAoTeto" name="baseCalculo"value="2">
+						<label class="form-check-label" for="verbasTotaisLimitadoAoTeto">
+							Totalidade dos vencimentos (limitado ao teto do INSS)
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" id="verbasTotaisNaoLimitadoAoTeto" name="baseCalculo"value="3">
+						<label class="form-check-label" for="verbasTotaisNaoLimitadoAoTeto">
+							Totalidade dos vencimentos (não limitado ao teto do INSS)
+						</label>
+					</div>
+				</div>
                 <div class="d-grid gap-2 py-2">
 					<input type = "button" class="btn btn-success btn-block" value = "Calcular" onclick = "calcSallary()">
 				</div>	
