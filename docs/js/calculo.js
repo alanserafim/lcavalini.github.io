@@ -6,22 +6,20 @@ function numberToReal(numero) {
 
 function calcSallary() {
 	
-	// valores atualizados até 07/2025.
-	// 2618,00 * 1.0425 = 2730,99
+	// valores atualizados até 04/2026.
 	const base = [
 		{ cargo: "", valor: 2618.80 },
 		// { cargo: "csj", valor: 2687.15 },
 		// { cargo: "csjGab", valor: 2687.15 }
 	];
 	const baseGratificacao = 972.37;
-	// 6.108,42 * 0.425 = 6.368,02
-	// 1.388,55 * 0.425 = 1.447,56
-	// Resolução nº 959/2025. 
+	
+	// Resolução nº 1014/26. 
 	const multiplicadoresGaj = [
-		{ cargo: "", valor:  6.282 },
-		{ cargo: "asjGab", valor: 7.710 }
+		{ cargo: "", valor:  6.664 },
+		{ cargo: "asjGab", valor: 8.173 }
 	];
-	// 462,84 * 1,0425 = 482,51
+	
 	const multiplicadoresRepr = [
 		{ cargo: "", valor: 0.0 },
 		{ cargo: "asjGab", valor: 0.4760 }, // analista
@@ -113,7 +111,7 @@ function calcSallary() {
 	let valorBase = base.filter(b => b.cargo == cargo).length == 1
 		? base.filter(b => b.cargo == cargo)[0].valor
 		: base.filter(b => b.cargo == "")[0].valor;
-	let vencimentos = (valorBase + gaj + repr + adicionalProgressao) * 1.0425;
+	let vencimentos = (valorBase + gaj + repr + adicionalProgressao);
 	// Assistente Judiciário não recebe adicional de nível superior.
 	let adicionalQualificacao = cargo == "ajc" && formacaoAcademica == 0.05
 		? 0.0
@@ -165,9 +163,7 @@ function calcSallary() {
 			baseCalculoPrevidencia = baseCalculoDeducoes;
 		}
 	}
-	
 
-	//let baseCalculoPrevidencia = baseCalculoDeducoes > tetoInss ? tetoInss : baseCalculoDeducoes;
 	if (baseCalculoPrevidencia <= faixasContribuicaoPrevidenciaria[0].limite) {
 		totalContribuicaoPrevidenciaria = baseCalculoPrevidencia * faixasContribuicaoPrevidenciaria[0].aliquota - faixasContribuicaoPrevidenciaria[0].deducao;
 	} else if (baseCalculoPrevidencia <= faixasContribuicaoPrevidenciaria[1].limite) {
